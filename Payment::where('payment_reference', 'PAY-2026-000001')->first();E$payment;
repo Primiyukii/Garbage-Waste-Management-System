@@ -1,0 +1,24 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#8651
+    [34mall[39m: [
+      [34;4mApp\Models\BillItem[39;24m {#8653
+        [34mid[39m: [35m1[39m,
+        [34mbill_id[39m: [35m1[39m,
+        [34mdescription[39m: [32m"[39m[32mBase Service Fee[39m[32m"[39m,
+        [34mquantity[39m: [32m"[39m[32m1.00[39m[32m"[39m,
+        [34munit_price[39m: [32m"[39m[32m300.00[39m[32m"[39m,
+        [34mamount[39m: [32m"[39m[32m300.00[39m[32m"[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-08-18 20:01:09[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-08-18 20:01:09[39m[32m"[39m,
+      },
+      [34;4mApp\Models\BillItem[39;24m {#8654
+        [34mid[39m: [35m2[39m,
+        [34mbill_id[39m: [35m1[39m,
+        [34mdescription[39m: [32m"[39m[32mAdditional Weight (10kg @ ₱10/kg)[39m[32m"[39m,
+        [34mquantity[39m: [32m"[39m[32m10.00[39m[32m"[39m,
+        [34munit_price[39m: [32m"[39m[32m10.00[39m[32m"[39m,
+        [34mamount[39m: [32m"[39m[32m100.00[39m[32m"[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-08-18 20:01:16[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-08-18 20:01:16[39m[32m"[39m,
+      },
+    ],
+  }

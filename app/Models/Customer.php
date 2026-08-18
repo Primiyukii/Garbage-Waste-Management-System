@@ -54,4 +54,14 @@ class Customer extends Model
     {
         return $this->hasMany(CollectionRecord::class);
     }
+
+    public function bills(): HasMany
+    {
+        return $this->hasMany(Bill::class);
+    }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
 }
