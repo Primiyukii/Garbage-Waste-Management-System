@@ -11,11 +11,9 @@ Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
     return redirect()->route($request->user()->dashboardRouteName());
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])
+        ->name('admin.dashboard');
 });
-
 Route::middleware(['auth', 'verified', 'role:customer'])->group(function () {
     Route::get('/customer/dashboard', function () {
         return view('customer.dashboard');
