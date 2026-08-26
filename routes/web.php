@@ -7,23 +7,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
+    return redirect()->route($request->user()->dashboardRouteName());
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+});
 
+Route::middleware(['auth', 'verified', 'role:customer'])->group(function () {
     Route::get('/customer/dashboard', function () {
         return view('customer.dashboard');
     })->name('customer.dashboard');
+});
 
+Route::middleware(['auth', 'verified', 'role:collector'])->group(function () {
     Route::get('/collector/dashboard', function () {
         return view('collector.dashboard');
     })->name('collector.dashboard');
 });
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
