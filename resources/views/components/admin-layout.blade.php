@@ -28,7 +28,7 @@
             @php
                 $navItems = [
                     ['label' => 'Dashboard', 'route' => 'admin.dashboard', 'icon' => 'grid'],
-                    ['label' => 'Customers', 'route' => null, 'icon' => 'users'],
+                    ['label' => 'Customers', 'route' => 'admin.customers.index', 'icon' => 'users'],
                     ['label' => 'Collectors', 'route' => null, 'icon' => 'truck'],
                     ['label' => 'Locations', 'route' => null, 'icon' => 'map-pin'],
                     ['label' => 'Waste Types', 'route' => null, 'icon' => 'trash'],
@@ -44,7 +44,7 @@
 
             @foreach ($navItems as $item)
                 @php
-                    $isActive = $item['route'] && request()->routeIs($item['route']);
+                    $isActive = $item['route'] && request()->routeIs(str_replace('.index', '.*', $item['route']));
                     $isEnabled = $item['route'] !== null;
                 @endphp
 
