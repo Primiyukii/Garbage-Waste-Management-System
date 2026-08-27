@@ -56,6 +56,7 @@
                     'text-slate-300 hover:bg-slate-800 hover:text-white' => ! $isActive && $isEnabled,
                     'text-slate-600 cursor-not-allowed' => ! $isEnabled,
                 ])
+            >
                 <x-dynamic-icon :name="$item['icon']" class="w-5 h-5 shrink-0" />
                 <span>{{ $item['label'] }}</span>
                 @unless ($isEnabled)
@@ -106,5 +107,6 @@
         </main>
     </div>
 </div>
+@stack('scripts')
 </body>
 </html>

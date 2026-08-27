@@ -31,6 +31,20 @@ class DashboardController extends Controller
                 ->sum('amount_paid'),
         ];
 
-        return view('admin.dashboard', compact('stats'));
+        $monthlyRevenue = Bill::selectRaw('MONTH(created_at) as month, SUM(amount_paid) as total')
+            ->whereYear('created_at', now()->year)
+            ->groupBy('month')
+            ->pluck('total', 'month');
+
+        $revenueChart = collect(range(1, 12))->map(function ($month) use ($monthlyRevenue) {
+            return (float) ($monthlyRevenue[$month] ?? 0);
+        });
+
+        $collectionStatusChart = [
+            'completed' => CollectionSchedule::where('status', 'completed')->count(),
+            'pending' => CollectionSchedule::whereIn('status', ['scheduled', 'assigned', 'in_progress'])->count(),
+        ];
+
+        return view('admin.dashboard', compact('stats', 'revenueChart', 'collectionStatusChart'));
     }
 }
