@@ -23,5 +23,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('manage-settings', function (\App\Models\User $user) {
             return $user->isAdmin();
         });
+
+        Gate::define('manage-locations', [\App\Policies\LocationPolicy::class, 'manage']);
     }
 }
