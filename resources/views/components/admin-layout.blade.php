@@ -29,7 +29,7 @@
                 $navItems = [
                     ['label' => 'Dashboard', 'route' => 'admin.dashboard', 'icon' => 'grid'],
                     ['label' => 'Customers', 'route' => 'admin.customers.index', 'icon' => 'users'],
-                    ['label' => 'Collectors', 'route' => null, 'icon' => 'truck'],
+                    ['label' => 'Collectors', 'route' => 'admin.collectors.index', 'icon' => 'truck'],
                     ['label' => 'Locations', 'route' => null, 'icon' => 'map-pin'],
                     ['label' => 'Waste Types', 'route' => null, 'icon' => 'trash'],
                     ['label' => 'Services & Pricing', 'route' => null, 'icon' => 'tag'],

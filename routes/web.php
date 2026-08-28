@@ -19,6 +19,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::resource('customers', \App\Http\Controllers\Admin\CustomerController::class);
         Route::patch('customers/{customer}/toggle-status', [\App\Http\Controllers\Admin\CustomerController::class, 'toggleStatus'])
             ->name('customers.toggle-status');
+
+        Route::resource('collectors', \App\Http\Controllers\Admin\CollectorController::class);
+        Route::patch('collectors/{collector}/toggle-status', [\App\Http\Controllers\Admin\CollectorController::class, 'toggleStatus'])
+            ->name('collectors.toggle-status');
     });
 
 Route::middleware(['auth', 'verified', 'role:customer'])->group(function () {
