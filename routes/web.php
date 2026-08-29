@@ -15,10 +15,13 @@ Route::middleware(['auth', 'verified', 'role:admin'])
     ->name('admin.')
     ->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
-
         Route::resource('customers', \App\Http\Controllers\Admin\CustomerController::class);
         Route::patch('customers/{customer}/toggle-status', [\App\Http\Controllers\Admin\CustomerController::class, 'toggleStatus'])
             ->name('customers.toggle-status');
+        Route::get('waste-types', [\App\Http\Controllers\Admin\WasteTypeController::class, 'index'])->name('waste-types.index');
+        Route::post('waste-types', [\App\Http\Controllers\Admin\WasteTypeController::class, 'store'])->name('waste-types.store');
+        Route::put('waste-types/{waste_type}', [\App\Http\Controllers\Admin\WasteTypeController::class, 'update'])->name('waste-types.update');
+        Route::patch('waste-types/{waste_type}/toggle-status', [\App\Http\Controllers\Admin\WasteTypeController::class, 'toggleStatus'])->name('waste-types.toggle-status');
 
         Route::resource('collectors', \App\Http\Controllers\Admin\CollectorController::class);
         Route::patch('collectors/{collector}/toggle-status', [\App\Http\Controllers\Admin\CollectorController::class, 'toggleStatus'])
