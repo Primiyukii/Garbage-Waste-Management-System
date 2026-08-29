@@ -22,6 +22,13 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::post('waste-types', [\App\Http\Controllers\Admin\WasteTypeController::class, 'store'])->name('waste-types.store');
         Route::put('waste-types/{waste_type}', [\App\Http\Controllers\Admin\WasteTypeController::class, 'update'])->name('waste-types.update');
         Route::patch('waste-types/{waste_type}/toggle-status', [\App\Http\Controllers\Admin\WasteTypeController::class, 'toggleStatus'])->name('waste-types.toggle-status');
+        Route::get('services', [\App\Http\Controllers\Admin\ServiceController::class, 'index'])->name('services.index');
+        Route::post('services', [\App\Http\Controllers\Admin\ServiceController::class, 'store'])->name('services.store');
+        Route::get('services/{service}', [\App\Http\Controllers\Admin\ServiceController::class, 'show'])->name('services.show');
+        Route::put('services/{service}', [\App\Http\Controllers\Admin\ServiceController::class, 'update'])->name('services.update');
+        Route::patch('services/{service}/toggle-status', [\App\Http\Controllers\Admin\ServiceController::class, 'toggleStatus'])->name('services.toggle-status');
+        Route::post('services/{service}/pricing-rules', [\App\Http\Controllers\Admin\ServiceController::class, 'storePricingRule'])->name('services.pricing-rules.store');
+        Route::patch('services/{service}/pricing-rules/{pricingRule}/toggle-status', [\App\Http\Controllers\Admin\ServiceController::class, 'togglePricingRuleStatus'])->name('services.pricing-rules.toggle-status');
 
         Route::resource('collectors', \App\Http\Controllers\Admin\CollectorController::class);
         Route::patch('collectors/{collector}/toggle-status', [\App\Http\Controllers\Admin\CollectorController::class, 'toggleStatus'])

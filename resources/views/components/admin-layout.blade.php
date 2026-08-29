@@ -32,7 +32,7 @@
                     ['label' => 'Collectors', 'route' => 'admin.collectors.index', 'icon' => 'truck'],
                     ['label' => 'Locations', 'route' => 'admin.locations.index', 'icon' => 'map-pin'],
                     ['label' => 'Waste Types', 'route' => 'admin.waste-types.index', 'icon' => 'trash'],
-                    ['label' => 'Services & Pricing', 'route' => null, 'icon' => 'tag'],
+                    ['label' => 'Services & Pricing', 'route' => 'admin.services.index', 'icon' => 'tag'],
                     ['label' => 'Schedules', 'route' => null, 'icon' => 'calendar'],
                     ['label' => 'Billing', 'route' => null, 'icon' => 'file-text'],
                     ['label' => 'Payments', 'route' => null, 'icon' => 'credit-card'],
