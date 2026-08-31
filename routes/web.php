@@ -51,11 +51,18 @@ Route::middleware(['auth', 'verified', 'role:customer'])->group(function () {
     })->name('customer.dashboard');
 });
 
-Route::middleware(['auth', 'verified', 'role:collector'])->group(function () {
-    Route::get('/collector/dashboard', function () {
-        return view('collector.dashboard');
-    })->name('collector.dashboard');
-});
+Route::middleware(['auth', 'verified', 'role:collector'])
+    ->prefix('collector')
+    ->name('collector.')
+    ->group(function () {
+        Route::get('/dashboard', [\App\Http\Controllers\Collector\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/schedules', [\App\Http\Controllers\Collector\ScheduleController::class, 'index'])->name('schedules.index');
+        Route::get('/schedules/{schedule}', [\App\Http\Controllers\Collector\ScheduleController::class, 'show'])->name('schedules.show');
+        Route::patch('/schedules/{schedule}/start', [\App\Http\Controllers\Collector\ScheduleController::class, 'start'])->name('schedules.start');
+        Route::post('/schedules/{schedule}/complete', [\App\Http\Controllers\Collector\ScheduleController::class, 'complete'])->name('schedules.complete');
+        Route::patch('/schedules/{schedule}/missed', [\App\Http\Controllers\Collector\ScheduleController::class, 'missed'])->name('schedules.missed');
+    });
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
