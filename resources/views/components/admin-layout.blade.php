@@ -34,7 +34,7 @@
                     ['label' => 'Waste Types', 'route' => 'admin.waste-types.index', 'icon' => 'trash'],
                     ['label' => 'Services & Pricing', 'route' => 'admin.services.index', 'icon' => 'tag'],
                     ['label' => 'Schedules', 'route' => 'admin.schedules.index', 'icon' => 'calendar'],
-                    ['label' => 'Billing', 'route' => null, 'icon' => 'file-text'],
+                    ['label' => 'Billing', 'route' => 'admin.bills.index', 'icon' => 'file-text'],
                     ['label' => 'Payments', 'route' => null, 'icon' => 'credit-card'],
                     ['label' => 'Reports', 'route' => null, 'icon' => 'bar-chart'],
                     ['label' => 'Audit Logs', 'route' => null, 'icon' => 'shield'],
