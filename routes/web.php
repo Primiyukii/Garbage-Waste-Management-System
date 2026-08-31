@@ -29,6 +29,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::patch('services/{service}/toggle-status', [\App\Http\Controllers\Admin\ServiceController::class, 'toggleStatus'])->name('services.toggle-status');
         Route::post('services/{service}/pricing-rules', [\App\Http\Controllers\Admin\ServiceController::class, 'storePricingRule'])->name('services.pricing-rules.store');
         Route::patch('services/{service}/pricing-rules/{pricingRule}/toggle-status', [\App\Http\Controllers\Admin\ServiceController::class, 'togglePricingRuleStatus'])->name('services.pricing-rules.toggle-status');
+        Route::resource('schedules', \App\Http\Controllers\Admin\ScheduleController::class)->only(['index', 'create', 'store', 'edit', 'update']);
+        Route::patch('schedules/{schedule}/assign-collector', [\App\Http\Controllers\Admin\ScheduleController::class, 'assignCollector'])->name('schedules.assign-collector');
+        Route::patch('schedules/{schedule}/cancel', [\App\Http\Controllers\Admin\ScheduleController::class, 'cancel'])->name('schedules.cancel');
 
         Route::resource('collectors', \App\Http\Controllers\Admin\CollectorController::class);
         Route::patch('collectors/{collector}/toggle-status', [\App\Http\Controllers\Admin\CollectorController::class, 'toggleStatus'])
