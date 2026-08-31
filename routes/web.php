@@ -45,11 +45,15 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::delete('locations/barangays/{barangay}', [\App\Http\Controllers\Admin\LocationController::class, 'destroyBarangay'])->name('locations.barangays.destroy');
     });
 
-Route::middleware(['auth', 'verified', 'role:customer'])->group(function () {
-    Route::get('/customer/dashboard', function () {
-        return view('customer.dashboard');
-    })->name('customer.dashboard');
-});
+Route::middleware(['auth', 'verified', 'role:customer'])
+    ->prefix('customer')
+    ->name('customer.')
+    ->group(function () {
+        Route::get('/dashboard', [\App\Http\Controllers\Customer\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/schedule', [\App\Http\Controllers\Customer\ScheduleController::class, 'index'])->name('schedule.index');
+        Route::get('/bills', [\App\Http\Controllers\Customer\BillController::class, 'index'])->name('bills.index');
+        Route::get('/bills/{bill}', [\App\Http\Controllers\Customer\BillController::class, 'show'])->name('bills.show');
+    });
 
 Route::middleware(['auth', 'verified', 'role:collector'])
     ->prefix('collector')
