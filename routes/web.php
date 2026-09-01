@@ -33,6 +33,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::patch('schedules/{schedule}/assign-collector', [\App\Http\Controllers\Admin\ScheduleController::class, 'assignCollector'])->name('schedules.assign-collector');
         Route::patch('schedules/{schedule}/cancel', [\App\Http\Controllers\Admin\ScheduleController::class, 'cancel'])->name('schedules.cancel');
         Route::resource('bills', \App\Http\Controllers\Admin\BillController::class)->only(['index', 'create', 'store', 'show']);
+        Route::resource('payments', \App\Http\Controllers\Admin\PaymentController::class)->only(['index', 'create', 'store', 'show']);
 
         Route::resource('collectors', \App\Http\Controllers\Admin\CollectorController::class);
         Route::patch('collectors/{collector}/toggle-status', [\App\Http\Controllers\Admin\CollectorController::class, 'toggleStatus'])
@@ -54,6 +55,7 @@ Route::middleware(['auth', 'verified', 'role:customer'])
         Route::get('/schedule', [\App\Http\Controllers\Customer\ScheduleController::class, 'index'])->name('schedule.index');
         Route::get('/bills', [\App\Http\Controllers\Customer\BillController::class, 'index'])->name('bills.index');
         Route::get('/bills/{bill}', [\App\Http\Controllers\Customer\BillController::class, 'show'])->name('bills.show');
+        Route::get('/payments', [\App\Http\Controllers\Customer\PaymentController::class, 'index'])->name('payments.index');
     });
 
 Route::middleware(['auth', 'verified', 'role:collector'])

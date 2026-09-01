@@ -16,6 +16,7 @@
             <a href="{{ route('customer.dashboard') }}" class="{{ request()->routeIs('customer.dashboard') ? 'text-indigo-600 font-medium' : 'text-gray-500 hover:text-gray-900' }}">Dashboard</a>
             <a href="{{ route('customer.schedule.index') }}" class="{{ request()->routeIs('customer.schedule.*') ? 'text-indigo-600 font-medium' : 'text-gray-500 hover:text-gray-900' }}">Schedule</a>
             <a href="{{ route('customer.bills.index') }}" class="{{ request()->routeIs('customer.bills.*') ? 'text-indigo-600 font-medium' : 'text-gray-500 hover:text-gray-900' }}">Bills</a>
+                <a href="{{ route('customer.payments.index') }}" class="{{ request()->routeIs('customer.payments.*') ? 'text-indigo-600 font-medium' : 'text-gray-500 hover:text-gray-900' }}">Payments</a>
         </nav>
 
         <div x-data="{ open: false }" class="relative">
@@ -39,6 +40,7 @@
         <a href="{{ route('customer.dashboard') }}" class="flex-1 text-center py-2 {{ request()->routeIs('customer.dashboard') ? 'text-indigo-600 font-medium' : 'text-gray-500' }}">Dashboard</a>
         <a href="{{ route('customer.schedule.index') }}" class="flex-1 text-center py-2 {{ request()->routeIs('customer.schedule.*') ? 'text-indigo-600 font-medium' : 'text-gray-500' }}">Schedule</a>
         <a href="{{ route('customer.bills.index') }}" class="flex-1 text-center py-2 {{ request()->routeIs('customer.bills.*') ? 'text-indigo-600 font-medium' : 'text-gray-500' }}">Bills</a>
+            <a href="{{ route('customer.payments.index') }}" class="flex-1 text-center py-2 {{ request()->routeIs('customer.payments.*') ? 'text-indigo-600 font-medium' : 'text-gray-500' }}">Payments</a>
     </nav>
 </header>
 

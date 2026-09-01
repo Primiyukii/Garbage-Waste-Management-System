@@ -10,7 +10,11 @@
     <div class="bg-white rounded-xl border border-gray-200 p-6">
         <div class="flex items-center justify-between mb-4">
             <x-status-badge :status="$bill->status" />
-            <span class="text-sm text-gray-500">Due {{ $bill->due_date->format('M d, Y') }}</span>
+            @if (!in_array($bill->status, ['paid', 'cancelled']))
+                <a href="{{ route('admin.payments.create') }}?bill={{ $bill->id }}" class="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700">Record Payment</a>
+            @else
+                <span class="text-sm text-gray-500">Due {{ $bill->due_date->format('M d, Y') }}</span>
+            @endif
         </div>
 
         <table class="w-full text-sm mb-6">

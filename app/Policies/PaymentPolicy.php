@@ -23,6 +23,6 @@ class PaymentPolicy
 
     public function create(User $user): bool
     {
-        return $user->isCustomer();
+        return $user->isAdmin() || $user->isCustomer();
     }
 }
