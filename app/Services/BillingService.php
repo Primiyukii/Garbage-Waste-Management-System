@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\PricingRule;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\BillGeneratedNotification;
 
 class BillingService
 {
