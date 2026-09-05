@@ -34,7 +34,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::patch('schedules/{schedule}/cancel', [\App\Http\Controllers\Admin\ScheduleController::class, 'cancel'])->name('schedules.cancel');
         Route::resource('bills', \App\Http\Controllers\Admin\BillController::class)->only(['index', 'create', 'store', 'show']);
         Route::resource('payments', \App\Http\Controllers\Admin\PaymentController::class)->only(['index', 'create', 'store', 'show']);
-
+        Route::get('reports', [\App\Http\Controllers\Admin\ReportController::class, 'index'])->name('reports.index');
+        Route::get('reports/{type}', [\App\Http\Controllers\Admin\ReportController::class, 'show'])->name('reports.show');
+        Route::get('reports/{type}/export/{format}', [\App\Http\Controllers\Admin\ReportController::class, 'export'])->name('reports.export');
         Route::resource('collectors', \App\Http\Controllers\Admin\CollectorController::class);
         Route::patch('collectors/{collector}/toggle-status', [\App\Http\Controllers\Admin\CollectorController::class, 'toggleStatus'])
             ->name('collectors.toggle-status');
