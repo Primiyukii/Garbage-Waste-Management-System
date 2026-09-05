@@ -19,6 +19,7 @@
                 <a href="{{ route('customer.payments.index') }}" class="{{ request()->routeIs('customer.payments.*') ? 'text-indigo-600 font-medium' : 'text-gray-500 hover:text-gray-900' }}">Payments</a>
         </nav>
 
+        <x-notification-bell />
         <div x-data="{ open: false }" class="relative">
             <button @click="open = !open" class="flex items-center gap-2 text-sm text-gray-700">
                 <span>{{ auth()->user()->name }}</span>

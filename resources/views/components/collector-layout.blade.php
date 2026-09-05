@@ -17,6 +17,7 @@
             <a href="{{ route('collector.schedules.index') }}" class="{{ request()->routeIs('collector.schedules.*') ? 'text-white' : 'text-slate-300 hover:text-white' }}">My Collections</a>
         </nav>
 
+        <x-notification-bell />
         <div x-data="{ open: false }" class="relative">
             <button @click="open = !open" class="flex items-center gap-2 text-sm">
                 <span>{{ auth()->user()->name }}</span>

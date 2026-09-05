@@ -17,7 +17,7 @@
     ></div>
 
     <aside
-        :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+        class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
         class="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-slate-200 transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-auto"
     >
         <div class="h-16 flex items-center px-6 border-b border-slate-800">
@@ -78,6 +78,7 @@
             <h1 class="text-lg font-semibold text-gray-800 hidden sm:block">{{ $title ?? 'Dashboard' }}</h1>
 
             <div class="flex items-center gap-4">
+                <x-notification-bell />
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900">

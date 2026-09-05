@@ -96,6 +96,8 @@ class BillingService
                 $bill->items()->create($item);
             }
 
+            $customer->user->notify(new BillGeneratedNotification($bill));
+
             return $bill;
         });
     }

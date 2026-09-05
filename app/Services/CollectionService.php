@@ -6,6 +6,7 @@ use App\Models\CollectionRecord;
 use App\Models\CollectionSchedule;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\CollectionCompletedNotification;
 
 class CollectionService
 {
@@ -35,7 +36,7 @@ class CollectionService
                 'recorded_at' => now(),
             ]);
 
-            $schedule->update(['status' => 'completed']);
+            $schedule->customer->user->notify(new CollectionCompletedNotification($record));
 
             return $record;
         });

@@ -6,6 +6,7 @@ use App\Models\Bill;
 use App\Models\Payment;
 use App\Models\Receipt;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\PaymentReceivedNotification;
 
 class PaymentService
 {
@@ -26,6 +27,7 @@ class PaymentService
 
             $this->applyToBill($bill, $payment);
             $this->generateReceipt($payment);
+            $bill->customer->user->notify(new PaymentReceivedNotification($payment));
 
             return $payment;
         });
