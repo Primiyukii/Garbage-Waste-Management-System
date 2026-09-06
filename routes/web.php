@@ -47,6 +47,8 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::delete('locations/cities/{city}', [\App\Http\Controllers\Admin\LocationController::class, 'destroyCity'])->name('locations.cities.destroy');
         Route::post('locations/barangays', [\App\Http\Controllers\Admin\LocationController::class, 'storeBarangay'])->name('locations.barangays.store');
         Route::delete('locations/barangays/{barangay}', [\App\Http\Controllers\Admin\LocationController::class, 'destroyBarangay'])->name('locations.barangays.destroy');
+        Route::get('audit-logs', [\App\Http\Controllers\Admin\AuditLogController::class, 'index'])->name('audit-logs.index');
+
     });
 
 Route::middleware(['auth', 'verified', 'role:customer'])

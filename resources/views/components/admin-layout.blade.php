@@ -37,7 +37,7 @@
                     ['label' => 'Billing', 'route' => 'admin.bills.index', 'icon' => 'file-text'],
                     ['label' => 'Payments', 'route' => 'admin.payments.index', 'icon' => 'credit-card'],
                     ['label' => 'Reports', 'route' => 'admin.reports.index', 'icon' => 'bar-chart'],
-                    ['label' => 'Audit Logs', 'route' => null, 'icon' => 'shield'],
+                    ['label' => 'Audit Logs', 'route' => 'admin.audit-logs.index', 'icon' => 'shield'],
                     ['label' => 'Settings', 'route' => null, 'icon' => 'settings'],
                 ];
             @endphp
