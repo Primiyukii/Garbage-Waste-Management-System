@@ -46,7 +46,7 @@ class ReportController extends Controller
         ]));
     }
 
-    public function export(Request $request, string $type, string $format): BinaryFileResponse|StreamedResponse
+    public function export(Request $request, string $type, string $format): BinaryFileResponse|StreamedResponse|\Illuminate\Http\Response
     {
         $this->authorize('manage-settings');
 

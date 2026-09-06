@@ -2,7 +2,7 @@
 <html>
 <head>
     <style>
-        body { font-family: sans-serif; font-size: 12px; }
+        body { font-family: 'DejaVu Sans', sans-serif; font-size: 12px; }
         h1 { font-size: 16px; }
         table { width: 100%; border-collapse: collapse; margin-top: 12px; }
         th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; }
