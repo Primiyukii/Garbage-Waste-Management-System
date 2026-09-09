@@ -15,13 +15,16 @@ Route::middleware(['auth', 'verified', 'role:admin'])
     ->name('admin.')
     ->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
         Route::resource('customers', \App\Http\Controllers\Admin\CustomerController::class);
         Route::patch('customers/{customer}/toggle-status', [\App\Http\Controllers\Admin\CustomerController::class, 'toggleStatus'])
             ->name('customers.toggle-status');
+
         Route::get('waste-types', [\App\Http\Controllers\Admin\WasteTypeController::class, 'index'])->name('waste-types.index');
         Route::post('waste-types', [\App\Http\Controllers\Admin\WasteTypeController::class, 'store'])->name('waste-types.store');
         Route::put('waste-types/{waste_type}', [\App\Http\Controllers\Admin\WasteTypeController::class, 'update'])->name('waste-types.update');
         Route::patch('waste-types/{waste_type}/toggle-status', [\App\Http\Controllers\Admin\WasteTypeController::class, 'toggleStatus'])->name('waste-types.toggle-status');
+
         Route::get('services', [\App\Http\Controllers\Admin\ServiceController::class, 'index'])->name('services.index');
         Route::post('services', [\App\Http\Controllers\Admin\ServiceController::class, 'store'])->name('services.store');
         Route::get('services/{service}', [\App\Http\Controllers\Admin\ServiceController::class, 'show'])->name('services.show');
@@ -29,17 +32,28 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::patch('services/{service}/toggle-status', [\App\Http\Controllers\Admin\ServiceController::class, 'toggleStatus'])->name('services.toggle-status');
         Route::post('services/{service}/pricing-rules', [\App\Http\Controllers\Admin\ServiceController::class, 'storePricingRule'])->name('services.pricing-rules.store');
         Route::patch('services/{service}/pricing-rules/{pricingRule}/toggle-status', [\App\Http\Controllers\Admin\ServiceController::class, 'togglePricingRuleStatus'])->name('services.pricing-rules.toggle-status');
+
         Route::resource('schedules', \App\Http\Controllers\Admin\ScheduleController::class)->only(['index', 'create', 'store', 'edit', 'update']);
         Route::patch('schedules/{schedule}/assign-collector', [\App\Http\Controllers\Admin\ScheduleController::class, 'assignCollector'])->name('schedules.assign-collector');
         Route::patch('schedules/{schedule}/cancel', [\App\Http\Controllers\Admin\ScheduleController::class, 'cancel'])->name('schedules.cancel');
+
         Route::resource('bills', \App\Http\Controllers\Admin\BillController::class)->only(['index', 'create', 'store', 'show']);
-        Route::resource('payments', \App\Http\Controllers\Admin\PaymentController::class)->only(['index', 'create', 'store', 'show']);
+
+        Route::resource('payments', \App\Http\Controllers\Admin\PaymentController::class)->only(['index', 'create', 'show']);
+        Route::post('payments', [\App\Http\Controllers\Admin\PaymentController::class, 'store'])
+            ->middleware('throttle:10,1')
+            ->name('payments.store');
+
         Route::get('reports', [\App\Http\Controllers\Admin\ReportController::class, 'index'])->name('reports.index');
         Route::get('reports/{type}', [\App\Http\Controllers\Admin\ReportController::class, 'show'])->name('reports.show');
-        Route::get('reports/{type}/export/{format}', [\App\Http\Controllers\Admin\ReportController::class, 'export'])->name('reports.export');
+        Route::get('reports/{type}/export/{format}', [\App\Http\Controllers\Admin\ReportController::class, 'export'])
+            ->middleware('throttle:20,1')
+            ->name('reports.export');
+
         Route::resource('collectors', \App\Http\Controllers\Admin\CollectorController::class);
         Route::patch('collectors/{collector}/toggle-status', [\App\Http\Controllers\Admin\CollectorController::class, 'toggleStatus'])
             ->name('collectors.toggle-status');
+
         Route::get('locations', [\App\Http\Controllers\Admin\LocationController::class, 'index'])->name('locations.index');
         Route::post('locations/provinces', [\App\Http\Controllers\Admin\LocationController::class, 'storeProvince'])->name('locations.provinces.store');
         Route::delete('locations/provinces/{province}', [\App\Http\Controllers\Admin\LocationController::class, 'destroyProvince'])->name('locations.provinces.destroy');
@@ -47,8 +61,8 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::delete('locations/cities/{city}', [\App\Http\Controllers\Admin\LocationController::class, 'destroyCity'])->name('locations.cities.destroy');
         Route::post('locations/barangays', [\App\Http\Controllers\Admin\LocationController::class, 'storeBarangay'])->name('locations.barangays.store');
         Route::delete('locations/barangays/{barangay}', [\App\Http\Controllers\Admin\LocationController::class, 'destroyBarangay'])->name('locations.barangays.destroy');
-        Route::get('audit-logs', [\App\Http\Controllers\Admin\AuditLogController::class, 'index'])->name('audit-logs.index');
 
+        Route::get('audit-logs', [\App\Http\Controllers\Admin\AuditLogController::class, 'index'])->name('audit-logs.index');
     });
 
 Route::middleware(['auth', 'verified', 'role:customer'])

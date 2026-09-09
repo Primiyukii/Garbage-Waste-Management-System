@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class StoreCollectorRequest extends FormRequest
 {
@@ -16,7 +17,7 @@ class StoreCollectorRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:8'],
+            'password' => ['required', 'string', Password::min(8)->mixedCase()->numbers()],
             'phone' => ['nullable', 'string', 'max:20'],
             'employee_id' => ['required', 'string', 'max:50', 'unique:collectors,employee_id'],
             'date_hired' => ['required', 'date'],

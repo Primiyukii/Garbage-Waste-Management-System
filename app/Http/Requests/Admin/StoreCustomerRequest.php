@@ -4,6 +4,8 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Rules\Password;
+
 class StoreCustomerRequest extends FormRequest
 {
     public function authorize(): bool
