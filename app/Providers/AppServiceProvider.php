@@ -11,6 +11,8 @@ use App\Observers\CollectorObserver;
 use App\Observers\CollectionScheduleObserver;
 use App\Observers\CustomerObserver;
 use App\Observers\PaymentObserver;
+use App\Models\User;
+use App\Observers\UserObserver;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -46,6 +48,7 @@ class AppServiceProvider extends ServiceProvider
         CollectionSchedule::observe(CollectionScheduleObserver::class);
         Bill::observe(BillObserver::class);
         Payment::observe(PaymentObserver::class);
+        User::observe(UserObserver::class);
 
         Event::listen(Login::class, function (Login $event) {
             app(\App\Services\AuditService::class)->log('auth.login', "User {$event->user->name} logged in");
