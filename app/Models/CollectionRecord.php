@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CollectionRecord extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'collection_schedule_id', 'customer_id', 'collector_id', 'waste_type_id',
         'weight_kg', 'collection_date', 'collection_time', 'photo_path',

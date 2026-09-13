@@ -19,7 +19,7 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_authenticate_using_the_login_screen(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->customer()->create();
 
         $response = $this->post('/login', [
             'email' => $user->email,
@@ -27,7 +27,33 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect(route('customer.dashboard', absolute: false));
+    }
+
+    public function test_admin_is_redirected_to_admin_dashboard_after_login(): void
+    {
+        $user = User::factory()->admin()->create();
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('admin.dashboard', absolute: false));
+    }
+
+    public function test_collector_is_redirected_to_collector_dashboard_after_login(): void
+    {
+        $user = User::factory()->collector()->create();
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('collector.dashboard', absolute: false));
     }
 
     public function test_users_can_not_authenticate_with_invalid_password(): void
@@ -37,6 +63,18 @@ class AuthenticationTest extends TestCase
         $this->post('/login', [
             'email' => $user->email,
             'password' => 'wrong-password',
+        ]);
+
+        $this->assertGuest();
+    }
+
+    public function test_suspended_users_cannot_authenticate(): void
+    {
+        $user = User::factory()->customer()->suspended()->create();
+
+        $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
         ]);
 
         $this->assertGuest();

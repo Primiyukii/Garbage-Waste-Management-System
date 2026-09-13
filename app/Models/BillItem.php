@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BillItem extends Model
 {
+    use HasFactory;
     protected $fillable = ['bill_id', 'description', 'quantity', 'unit_price', 'amount'];
 
     protected function casts(): array
