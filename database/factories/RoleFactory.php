@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RoleFactory extends Factory
@@ -16,16 +17,25 @@ class RoleFactory extends Factory
 
     public function admin(): static
     {
-        return $this->state(['name' => 'Administrator', 'slug' => 'admin']);
+        return $this->state(fn () => Role::firstOrCreate(
+            ['slug' => 'admin'],
+            ['name' => 'Administrator']
+        )->only(['name', 'slug']));
     }
 
     public function customer(): static
     {
-        return $this->state(['name' => 'Customer', 'slug' => 'customer']);
+        return $this->state(fn () => Role::firstOrCreate(
+            ['slug' => 'customer'],
+            ['name' => 'Customer']
+        )->only(['name', 'slug']));
     }
 
     public function collector(): static
     {
-        return $this->state(['name' => 'Garbage Collector', 'slug' => 'collector']);
+        return $this->state(fn () => Role::firstOrCreate(
+            ['slug' => 'collector'],
+            ['name' => 'Garbage Collector']
+        )->only(['name', 'slug']));
     }
 }

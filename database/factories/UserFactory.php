@@ -49,21 +49,21 @@ class UserFactory extends Factory
     public function admin(): static
     {
         return $this->state(fn (array $attributes) => [
-            'role_id' => Role::factory()->admin(),
+            'role_id' => Role::firstOrCreate(['slug' => 'admin'], ['name' => 'Administrator'])->id,
         ]);
     }
 
     public function customer(): static
     {
         return $this->state(fn (array $attributes) => [
-            'role_id' => Role::factory()->customer(),
+            'role_id' => Role::firstOrCreate(['slug' => 'customer'], ['name' => 'Customer'])->id,
         ]);
     }
 
     public function collector(): static
     {
         return $this->state(fn (array $attributes) => [
-            'role_id' => Role::factory()->collector(),
+            'role_id' => Role::firstOrCreate(['slug' => 'collector'], ['name' => 'Garbage Collector'])->id,
         ]);
     }
 

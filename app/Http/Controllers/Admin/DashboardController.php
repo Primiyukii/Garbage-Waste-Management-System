@@ -31,11 +31,11 @@ class DashboardController extends Controller
                 ->sum('amount_paid'),
         ];
 
-        $monthlyRevenue = Bill::selectRaw('MONTH(created_at) as month, SUM(amount_paid) as total')
-            ->whereYear('created_at', now()->year)
-            ->groupBy('month')
-            ->pluck('total', 'month');
-
+        $monthlyRevenue = Bill::whereYear('created_at', now()->year)
+            ->get(['created_at', 'amount_paid'])
+            ->groupBy(fn ($bill) => $bill->created_at->format('n'))
+            ->map(fn ($group) => $group->sum('amount_paid'));
+        
         $revenueChart = collect(range(1, 12))->map(function ($month) use ($monthlyRevenue) {
             return (float) ($monthlyRevenue[$month] ?? 0);
         });
