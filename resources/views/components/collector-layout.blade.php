@@ -8,13 +8,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased bg-gray-50 min-h-screen">
-<header class="bg-slate-900 text-white">
+<header class="bg-blue-900 text-white">
     <div class="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
         <a href="{{ route('collector.dashboard') }}" class="font-semibold text-lg">🗑️ WasteWise</a>
 
         <nav class="hidden sm:flex items-center gap-6 text-sm">
-            <a href="{{ route('collector.dashboard') }}" class="{{ request()->routeIs('collector.dashboard') ? 'text-white' : 'text-slate-300 hover:text-white' }}">Dashboard</a>
-            <a href="{{ route('collector.schedules.index') }}" class="{{ request()->routeIs('collector.schedules.*') ? 'text-white' : 'text-slate-300 hover:text-white' }}">My Collections</a>
+            <a href="{{ route('collector.dashboard') }}" class="{{ request()->routeIs('collector.dashboard') ? 'text-white' : 'text-blue-100 hover:text-white' }}">Dashboard</a>
+            <a href="{{ route('collector.schedules.index') }}" class="{{ request()->routeIs('collector.schedules.*') ? 'text-white' : 'text-blue-100 hover:text-white' }}">My Collections</a>
         </nav>
 
         <x-notification-bell />
@@ -35,9 +35,9 @@
         </div>
     </div>
 
-    <nav class="sm:hidden flex items-center justify-around border-t border-slate-800 text-xs">
-        <a href="{{ route('collector.dashboard') }}" class="flex-1 text-center py-2 {{ request()->routeIs('collector.dashboard') ? 'text-white' : 'text-slate-300' }}">Dashboard</a>
-        <a href="{{ route('collector.schedules.index') }}" class="flex-1 text-center py-2 {{ request()->routeIs('collector.schedules.*') ? 'text-white' : 'text-slate-300' }}">My Collections</a>
+    <nav class="sm:hidden flex items-center justify-around border-t border-blue-800 text-xs">
+        <a href="{{ route('collector.dashboard') }}" class="flex-1 text-center py-2 {{ request()->routeIs('collector.dashboard') ? 'text-white' : 'text-blue-100' }}">Dashboard</a>
+        <a href="{{ route('collector.schedules.index') }}" class="flex-1 text-center py-2 {{ request()->routeIs('collector.schedules.*') ? 'text-white' : 'text-blue-100' }}">My Collections</a>
     </nav>
 </header>
 

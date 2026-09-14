@@ -18,9 +18,9 @@
 
     <aside
         class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-        class="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-slate-200 transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-auto"
+        class="fixed inset-y-0 left-0 z-40 w-64 bg-blue-900 text-blue-100 transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-auto"
     >
-        <div class="h-16 flex items-center px-6 border-b border-slate-800">
+        <div class="h-16 flex items-center px-6 border-b border-blue-800">
             <span class="text-white font-semibold text-lg">🗑️ WasteWise</span>
         </div>
 
@@ -53,14 +53,14 @@
                 @class([
                     'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition',
                     'bg-indigo-600 text-white' => $isActive,
-                    'text-slate-300 hover:bg-slate-800 hover:text-white' => ! $isActive && $isEnabled,
-                    'text-slate-600 cursor-not-allowed' => ! $isEnabled,
+                    'text-blue-100 hover:bg-blue-800 hover:text-white' => ! $isActive && $isEnabled,
+                    'text-blue-300 cursor-not-allowed' => ! $isEnabled,
                 ])
             >
                 <x-dynamic-icon :name="$item['icon']" class="w-5 h-5 shrink-0" />
                 <span>{{ $item['label'] }}</span>
                 @unless ($isEnabled)
-                    <span class="ml-auto text-[10px] uppercase tracking-wide text-slate-500">soon</span>
+                    <span class="ml-auto text-[10px] uppercase tracking-wide text-blue-300">soon</span>
                     @endunless
                 </a>
                     @endforeach

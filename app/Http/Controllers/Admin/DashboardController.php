@@ -35,7 +35,7 @@ class DashboardController extends Controller
             ->get(['created_at', 'amount_paid'])
             ->groupBy(fn ($bill) => $bill->created_at->format('n'))
             ->map(fn ($group) => $group->sum('amount_paid'));
-        
+
         $revenueChart = collect(range(1, 12))->map(function ($month) use ($monthlyRevenue) {
             return (float) ($monthlyRevenue[$month] ?? 0);
         });
